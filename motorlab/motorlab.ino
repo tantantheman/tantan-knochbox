@@ -79,6 +79,27 @@ void loop(){
   // stepper rotates
   stepperRotations++;
   servoPosition = (servoPosition + 10) % 180;
+  
+/*
+ if (numKnocks < puzzleSequence[placeInSequence])
+ {
+ servoPosition = map(value, 0, 1.0, 0, 180)
+ //percentage of accuracy mapped to servo range
+ myServo.write(servoPosition);
+ delay(100);
+ servoPosition = 0;
+ myServo.write(servoPosition);
+ }
+ else 
+ {
+ servoPosition = 180;
+ myServo.write(servoPosition);
+ delay(100);
+ servoPosition = 0;
+ myServo.write(servoPosition);
+ }
+
+*/
 
   // log values
  Serial.print(stepperRotations);
