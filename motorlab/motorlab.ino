@@ -34,7 +34,7 @@ void setup() {
 }
 
 void loop(){
-
+  buttonState = digitalRead(buttonPin);
   if (sequenceSolved == 1)
   {
     readyToGo = 0;
@@ -47,21 +47,20 @@ void loop(){
     readyToGo = 1;
   }
 
-  
   if (buttonState != lastButtonState) {
     // if the state has changed, increment the counter
     if (buttonState == LOW) {
       // if the current state is HIGH then the button went from off to on:
       buttonPushCounter++;
-      Serial.print(thingOn, DEC);
+      Serial.println(thingOn, DEC);
     } else {
       // if the current state is LOW then the button went from on to off:
-      Serial.print(thingOff, DEC);
+      Serial.println(thingOff, DEC);
     } 
    }
    else 
    {
-    Serial.print(thingOff, DEC); 
+    Serial.println(thingOff, DEC); 
    } 
 
   if (buttonPushCounter == puzzleSequence[placeInSequence])
@@ -75,9 +74,11 @@ void loop(){
       placeInSequence = 0;
       sequenceSolved = 1;
     }
+    placeInSequence++;
     
   }
-  
+
+  lastButtonState = buttonState;
   // stepper rotates
  // stepperRotations++;
  // servoPosition = (servoPosition + 10) % 180;
