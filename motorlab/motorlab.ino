@@ -63,7 +63,7 @@ void loop(){
     Serial.print(thingOff, DEC); 
    } 
 
-/*  if (buttonPushCounter == puzzleSequence[placeInSequence])
+  if (buttonPushCounter == puzzleSequence[placeInSequence])
   {
     buttonPushCounter = 0;
     Serial.println("one place solved");
@@ -75,7 +75,7 @@ void loop(){
     }
     
   }
-  */
+  
   // stepper rotates
   stepperRotations++;
   servoPosition = (servoPosition + 10) % 180;
@@ -106,7 +106,7 @@ void loop(){
   Serial.print(',');
   Serial.println(servoPosition);
  
- if (stepperRotations == puzzleSequence[placeInSequence])
+/* if (stepperRotations == puzzleSequence[placeInSequence])
   {
     //buttonPushCounter = 0;
     Serial.println("one place solved");
@@ -118,7 +118,7 @@ void loop(){
       sequenceSolved = 1;
     }
     
-  }
+  } */
 
   // set motor positions
   myStepper.step(stepsPerRevolution);
