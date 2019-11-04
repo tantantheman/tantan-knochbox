@@ -2,6 +2,7 @@
 #include <Stepper.h>
 
 const int stepsPerRevolution = 2038;
+const int incrementSteps = 407.6;
 Stepper myStepper(stepsPerRevolution, 32, 33, 25, 26);
 Servo myServo;  
 
@@ -67,6 +68,7 @@ void loop(){
   {
     buttonPushCounter = 0;
     Serial.println("one place solved");
+    myStepper.step(incrementSteps);
     if (placeInSequence == 4)
     {
       Serial.println("PUZZLE SOLVED");
@@ -80,7 +82,7 @@ void loop(){
   stepperRotations++;
   servoPosition = (servoPosition + 10) % 180;
   
-/*
+
  if (numKnocks < puzzleSequence[placeInSequence])
  {
  servoPosition = map(value, 0, 1.0, 0, 180)
@@ -99,29 +101,11 @@ void loop(){
  myServo.write(servoPosition);
  }
 
-*/
-
-  // log values
- Serial.print(stepperRotations);
-  Serial.print(',');
-  Serial.println(servoPosition);
- 
-/* if (stepperRotations == puzzleSequence[placeInSequence])
-  {
-    //buttonPushCounter = 0;
-    Serial.println("one place solved");
-    placeInSequence++;
-    if (placeInSequence == 5)
-    {
-      Serial.println("PUZZLE SOLVED");
-      placeInSequence = 0;
-      sequenceSolved = 1;
-    }
-    
-  } */
 
   // set motor positions
-  myStepper.step(stepsPerRevolution);
-  myServo.write(servoPosition);
+  //myStepper.step(stepsPerRevolution);
+  //myServo.write(servoPosition);
+
+  
   
 }
