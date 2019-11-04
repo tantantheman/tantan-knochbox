@@ -6,7 +6,7 @@ const int incrementSteps = 407.6;
 Stepper myStepper(stepsPerRevolution, 32, 33, 25, 26);
 Servo myServo;  
 
-const int buttonPin = 14;
+const int buttonPin = 4;
 
 const int thingOn = 1;
 const int thingOff = 0;
@@ -79,13 +79,13 @@ void loop(){
   }
   
   // stepper rotates
-  stepperRotations++;
-  servoPosition = (servoPosition + 10) % 180;
+ // stepperRotations++;
+ // servoPosition = (servoPosition + 10) % 180;
   
-
+/*
  if (numKnocks < puzzleSequence[placeInSequence])
  {
- servoPosition = map(value, 0, 1.0, 0, 180)
+ servoPosition = map(numKnocks, 0, 1.0, 0, 180);
  //percentage of accuracy mapped to servo range
  myServo.write(servoPosition);
  delay(100);
@@ -99,8 +99,7 @@ void loop(){
  delay(100);
  servoPosition = 0;
  myServo.write(servoPosition);
- }
-
+ } */
 
   // set motor positions
   //myStepper.step(stepsPerRevolution);
