@@ -8,7 +8,7 @@ Servo myServo;
 int numKnocks = 0;
 int sequenceSolved = 0;
 
-
+int puzzleSequence[5] = {1, 2, 3, 4, 5};
 
 int servoPosition = 0;
 int stepperRotations = 0;
@@ -19,17 +19,15 @@ void setup() {
   myStepper.setSpeed(6);
 }
 
-int generateSequence(){
-  int[] arr = new int[5];
-      for (int i = 0; i < arr.length; i++) {
-         arr[i] = random(1, 5); // storing random integers in an array
-         System.out.println(arr[i]); // printing each array element
-
-  return arr;
-}
-
 void loop(){
 
+  if (sequenceSolved == 1)
+  {
+    for (int i = 0; i < 5; i++){
+      puzzleSequence[i] = random(1, 5);
+    }
+  }
+  
   // stepper rotates
   stepperRotations++;
   servoPosition = (servoPosition + 10) % 180;
