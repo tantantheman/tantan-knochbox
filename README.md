@@ -1,4 +1,4 @@
-# Introducing: The KnöchBox, a unnecessarily named Puzzle Box
+# Introducing: The KnöchBox, or an Exercise in the Unecessarily Bavarian-themed Naming of a Puzzle Box
 
 ![alt text][intro]
 
@@ -13,7 +13,7 @@ Stepper.h
 
 **How to play:**  
 
-Objective: The goal in the box is to try and guess the correct sequence of knocks in order to "unlock" the puzzle box. If the number of knocks in a set is correct, you advance onto the next section of the 5-set sequence. An incorrect guess will reveal how close you were to guessing that set, allowing you to try again. When the box is unlocked, it resets. 
+Objective: The goal in the box is to try and guess the correct sequence of knocks in order to "unlock" the puzzle box. If the number of knocks in a set is correct, you advance onto the next section of the 5-set sequence. An incorrect guess will reveal how close you were to guessing that set, allowing you to try again. If you go over the number of knocks in a set, the accuracy displays as 0%. When the box is unlocked, it resets. 
 
 **How to run:**  
 Plug in ESP32 inside the KnöchBox by opening up the top lid, and extending cable out through side panel with cutout. Enjoy!
@@ -44,3 +44,4 @@ The largest technical difficulty with building this project was actually figurin
 
 **Video**  
 A video of the KnöchBox in action can be found here:  
+https://youtu.be/6DZXhUA5q48  
