@@ -1,8 +1,5 @@
 #include <ESP32Servo.h>
 #include <Stepper.h>
-#include <timer.h>
-
-auto timer = timer_create_default(); // create a timer with default settings
 
 const int stepsPerRevolution = 2038;
 const int incrementSteps = 407.6;
@@ -27,7 +24,7 @@ int placeInSequence = 0;
 
 int puzzleSequence[5] = {1, 2, 3, 4, 5};
 
-int servoPosition = 0;
+int servoPosition = 1800;
 int stepperRotations = 0;
 
 void setup() {
@@ -72,7 +69,7 @@ void loop(){
    {
     numZeros++;
     //Serial.println(thingOff, DEC); 
-    Serial.println(numZeros);
+    Serial.println(buttonPushCounter);
    } 
 
   if (buttonPushCounter == puzzleSequence[placeInSequence])
@@ -81,6 +78,9 @@ void loop(){
     numZeros = 0;
     firstPress = 1;
     Serial.println("one place solved");
+    servoPosition = 180;
+    myServo.write(servoPosition);  
+
     myStepper.step(incrementSteps);
     if (placeInSequence == 4)
     {
@@ -95,40 +95,37 @@ void loop(){
   }
 
   lastButtonState = buttonState;
-  // stepper rotates
- // stepperRotations++;
- // servoPosition = (servoPosition + 10) % 180;
-  
-/* if (numZeros >4000 && firstPress != 1)
- {
-  Serial.println("NOWNOWNOWNOWNOWOWN");
-  delay(100);
-  numZeros = 0;
- } */
+ 
  if (numZeros > 5000 && firstPress != 1)
  {
  if (buttonPushCounter < puzzleSequence[placeInSequence])
  {
-    servoPosition = map(buttonPushCounter, 0, 1.0, 0, 180);
+    float percentageVal = ((float) buttonPushCounter/puzzleSequence[placeInSequence])*100;
+    int percentToInt = (int) percentageVal;
+    servoPosition = map(percentToInt, 0, 100, 180, 0);
+    Serial.print("percentageVal is ");
+    Serial.println(percentageVal);
+    Serial.print("int version is");
+    Serial.println(percentToInt);
+    Serial.print("servoPosition is ");
+    Serial.println(servoPosition);
+    delay(1000);
     //percentage of accuracy mapped to servo range
-    myServo.write(servoPosition);
-    delay(50);
-    servoPosition = 0;
-    myServo.write(servoPosition);
+    myServo.write(servoPosition);  
+    numZeros = 0;
+    buttonPushCounter = 0;
+    firstPress = 1;
  }
  else 
  {
     servoPosition = 180;
     myServo.write(servoPosition);
-    delay(50);
-    servoPosition = 0;
-    myServo.write(servoPosition);
+    numZeros = 0;
+    buttonPushCounter = 0;
+    firstPress = 1;
  } 
  }
 
-  // set motor positions
-  //myStepper.step(stepsPerRevolution);
-  //myServo.write(servoPosition);
 
   
   
