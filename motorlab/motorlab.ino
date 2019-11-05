@@ -98,7 +98,7 @@ void loop(){
     Serial.println("one place solved");
     servoPosition = 180;
     myServo.write(servoPosition); 
-    int progressPosition = map(placeInSequence+1, 0, 4, 180, 0);
+    int progressPosition = map(placeInSequence, 0, 4, 180, 0);
     progressServo.write(progressPosition);
     
     myStepper.step(incrementSteps);
@@ -107,10 +107,11 @@ void loop(){
       Serial.println("PUZZLE SOLVED");
       placeInSequence = 0;
       sequenceSolved = 1;
-      progressServo.write(180);
       lockServo.write(36);
       delay(4000);
-      lockServo.write(144);      
+      lockServo.write(144);
+      progressServo.write(180);
+      
     }
     placeInSequence++;
     
