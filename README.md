@@ -2,7 +2,7 @@
 
 ![alt text][intro]
 
-[intro]: https://github.com/tantantheman/tantan-whoopee/blob/master/documentation_photos/cushionslant.jpg "Wireless Whoopee Wonder"
+[intro]: https://github.com/tantantheman/tantan-knochbox/blob/master/photos/knochoverview.jpeg "Knochbox Overview"
 
 A puzzle box for class. Module 4/5, Task 2 (Kinetic Art).  
 Programming in Arduino IDE.  
@@ -23,7 +23,19 @@ To create the puzzle box that is the KnöchBox, only a few parts were actually n
 
 The enclosure was largely inspired by that of the Fart-O-Matic, where utilizing the top panel of the box essentially as a large button allows for the "knocking" effect that the user can use to interact with the box.
 
+![alt text][panel]
+
+[panel]: https://github.com/tantantheman/tantan-knochbox/blob/master/photos/knochpanel.jpeg "Knochbox Guages"
+
 Mechanics wise, there are three servo motors that act as guages, one that tells the "closeness" or accuracy of the knock attempt, one that tells the player how close they are to unlocking the box, and finally one guage that indicates the locked/unlocked status of the box.  
+
+![alt text][inside]
+
+[inside]: https://github.com/tantantheman/tantan-knochbox/blob/master/photos/knochinside.jpeg "Knochbox Inside"
+
+![alt text][servo]
+
+[servo]: https://github.com/tantantheman/tantan-knochbox/blob/master/photos/knochservo.jpeg "Knochbox Servos"
 
 There is also a button that is implemented in the same way as the Fart-O-Matic, allowing for the previously discussed top knocking panel.  
 
