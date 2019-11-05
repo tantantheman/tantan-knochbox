@@ -24,13 +24,14 @@ int placeInSequence = 0;
 
 int puzzleSequence[5] = {1, 2, 3, 4, 5};
 
-int servoPosition = 1800;
+int servoPosition = 180;
 int stepperRotations = 0;
 
 void setup() {
   myServo.attach(27);
   Serial.begin(115200);
   myStepper.setSpeed(6);
+  myServo.write(servoPosition);  
 
   pinMode(buttonPin, INPUT_PULLUP);
 }
@@ -72,7 +73,13 @@ void loop(){
     Serial.println(buttonPushCounter);
    } 
 
-  if (buttonPushCounter == puzzleSequence[placeInSequence])
+  
+  lastButtonState = buttonState;
+ 
+ if (numZeros > 5000 && firstPress != 1)
+ {
+
+ if (buttonPushCounter == puzzleSequence[placeInSequence])
   {
     buttonPushCounter = 0;
     numZeros = 0;
@@ -94,10 +101,6 @@ void loop(){
     
   }
 
-  lastButtonState = buttonState;
- 
- if (numZeros > 5000 && firstPress != 1)
- {
  if (buttonPushCounter < puzzleSequence[placeInSequence])
  {
     float percentageVal = ((float) buttonPushCounter/puzzleSequence[placeInSequence])*100;
