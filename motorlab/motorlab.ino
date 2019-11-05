@@ -6,9 +6,10 @@ const int incrementSteps = 407.6;
 Stepper myStepper(stepsPerRevolution, 32, 33, 25, 26);
 Servo myServo;
 Servo progressServo; 
+Servo lockServo;
 
 const int buttonPin = 4;
-
+const int dcPin = 24;
 const int thingOn = 1;
 const int thingOff = 0;
 
@@ -31,10 +32,13 @@ int stepperRotations = 0;
 void setup() {
   myServo.attach(27);
   progressServo.attach(25);
+  lockServo.attach(26);
   Serial.begin(115200);
 //  myStepper.setSpeed(6);
   myServo.write(servoPosition);
-  progressServo.attach(180);  
+  progressServo.write(180);
+  lockServo.write(36);  
+
 
   pinMode(buttonPin, INPUT_PULLUP);
 }
@@ -63,6 +67,10 @@ void loop(){
         numZeros = 0;
         firstPress = 0;
       }
+      else
+      {
+        numZeros = 0;
+      }
       Serial.println(thingOn, DEC);
     } else {
       // if the current state is LOW then the button went from on to off:
@@ -90,7 +98,7 @@ void loop(){
     Serial.println("one place solved");
     servoPosition = 180;
     myServo.write(servoPosition); 
-    int progressPosition = map(placeInSequence, 0, 4, 180, 0);
+    int progressPosition = map(placeInSequence+1, 0, 4, 180, 0);
     progressServo.write(progressPosition);
     
     myStepper.step(incrementSteps);
@@ -100,8 +108,9 @@ void loop(){
       placeInSequence = 0;
       sequenceSolved = 1;
       progressServo.write(180);
-      //myStepper.step(incrementSteps);
-
+      lockServo.write(108);
+      delay(1000);
+      lockServo.write(36);      
     }
     placeInSequence++;
     
@@ -118,7 +127,7 @@ void loop(){
     Serial.println(percentToInt);
     Serial.print("servoPosition is ");
     Serial.println(servoPosition);
-    delay(1000);
+    //delay(1000);
     //percentage of accuracy mapped to servo range
     myServo.write(servoPosition);  
     numZeros = 0;
