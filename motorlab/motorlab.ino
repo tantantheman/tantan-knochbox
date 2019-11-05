@@ -37,7 +37,7 @@ void setup() {
 //  myStepper.setSpeed(6);
   myServo.write(servoPosition);
   progressServo.write(180);
-  lockServo.write(36);  
+  lockServo.write(144);  
 
 
   pinMode(buttonPin, INPUT_PULLUP);
@@ -108,9 +108,9 @@ void loop(){
       placeInSequence = 0;
       sequenceSolved = 1;
       progressServo.write(180);
-      lockServo.write(108);
-      delay(1000);
-      lockServo.write(36);      
+      lockServo.write(36);
+      delay(4000);
+      lockServo.write(144);      
     }
     placeInSequence++;
     
