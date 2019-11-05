@@ -76,7 +76,7 @@ void loop(){
   
   lastButtonState = buttonState;
  
- if (numZeros > 5000 && firstPress != 1)
+ if (numZeros > 8000 && firstPress != 1)
  {
 
  if (buttonPushCounter == puzzleSequence[placeInSequence])
