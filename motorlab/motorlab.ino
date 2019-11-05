@@ -39,7 +39,7 @@ void loop(){
   {
     readyToGo = 0;
     for (int i = 0; i < 5; i++){
-      puzzleSequence[i] = random(1, 10);
+      puzzleSequence[i] = random(4, 10);
       Serial.print("new random sequence = ");
       Serial.println(puzzleSequence[i]);
     }
@@ -73,6 +73,8 @@ void loop(){
       Serial.println("PUZZLE SOLVED");
       placeInSequence = 0;
       sequenceSolved = 1;
+      //myStepper.step(incrementSteps);
+
     }
     placeInSequence++;
     
