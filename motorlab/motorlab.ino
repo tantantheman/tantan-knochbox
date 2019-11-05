@@ -4,7 +4,8 @@
 const int stepsPerRevolution = 2038;
 const int incrementSteps = 407.6;
 Stepper myStepper(stepsPerRevolution, 32, 33, 25, 26);
-Servo myServo;  
+Servo myServo;
+Servo progressServo; 
 
 const int buttonPin = 4;
 
@@ -29,9 +30,11 @@ int stepperRotations = 0;
 
 void setup() {
   myServo.attach(27);
+  progressServo.attach(25);
   Serial.begin(115200);
-  myStepper.setSpeed(6);
-  myServo.write(servoPosition);  
+//  myStepper.setSpeed(6);
+  myServo.write(servoPosition);
+  progressServo.attach(180);  
 
   pinMode(buttonPin, INPUT_PULLUP);
 }
@@ -86,14 +89,17 @@ void loop(){
     firstPress = 1;
     Serial.println("one place solved");
     servoPosition = 180;
-    myServo.write(servoPosition);  
-
+    myServo.write(servoPosition); 
+    int progressPosition = map(placeInSequence, 0, 4, 180, 0);
+    progressServo.write(progressPosition);
+    
     myStepper.step(incrementSteps);
     if (placeInSequence == 4)
     {
       Serial.println("PUZZLE SOLVED");
       placeInSequence = 0;
       sequenceSolved = 1;
+      progressServo.write(180);
       //myStepper.step(incrementSteps);
 
     }
